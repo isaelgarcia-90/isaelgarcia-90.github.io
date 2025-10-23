@@ -4,54 +4,288 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isael García Luis | Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-  </style>
+<style>
+  :root {
+    --bg: #0d1117;
+    --text: #00ff9f;
+    --accent: #00ff9f;
+    --error: #ff4d4d;
+  }
+
+  body {
+    font-family: "Courier New", monospace;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  /* Profile Section */
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0.3rem 0;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+  }
+
+  p {
+    font-size: 1rem;
+    color: #a0ffa8;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  /* Typing Game */
+  #game {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  #command {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  #input {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 6px 8px;
+    outline: none;
+    width: 260px;
+    text-align: center;
+  }
+
+  #input::placeholder {
+    color: #00ff9f66;
+    font-size: 0.9rem;
+  }
+
+  /* Shake animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+  }
+
+  .shake {
+    animation: shake 0.4s;
+  }
+
+  #hint {
+    font-size: 0.85rem;
+    color: #55ff99aa;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  #result {
+    height: 1.2em;
+    margin-top: 6px;
+  }
+
+  .success { color: var(--accent); }
+  .fail { color: var(--error); }
+
+  /* Loader */
+  .loader {
+    margin-top: 1.8rem;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0,255,159,0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* About Section */
+  #about {
+    max-width: 750px;
+    margin-top: 2rem;
+    border-top: 1px solid var(--accent);
+    padding-top: 1.5rem;
+    text-align: left;
+  }
+
+  #about h2 {
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  #about p {
+    text-align: justify;
+    color: #a0ffa8;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #55ff99;
+    text-align: center;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
 </head>
 <body>
-  <header>
+
+  <!-- Typing Game -->
+  <div id="game">
+    <div id="command">Initializing...</div>
+    <input
+      id="input"
+      type="text"
+      placeholder="type here"
+      autofocus
+    />
+    <div id="hint">Hint: Try typing the command shown above 👆</div>
+    <div id="result"></div>
+  </div>
+
+  <!-- Profile -->
+  <div class="profile">
     <h1>Isael García Luis</h1>
-    <p>Embedded Systems • Machine Learning • Data Analysis</p>
-  </header>
-  
-  <section class="projects">
-    <div class="card">
-      <h3>ADAS with BeagleBone Black</h3>
-      <p>Advanced driver-assistance system using embedded Linux and computer vision.</p>
-    </div>
-    <div class="card">
-      <h3>Forex Trading Bot</h3>
-      <p>Automated trading strategy with LSTM and sentiment analysis in Python.</p>
-    </div>
-    <div class="card">
-      <h3>Qt Desktop Application</h3>
-      <p>Cross-platform C++ GUI app with live sensor data visualization.</p>
-    </div>
+    <p>My portfolio website is currently under construction 🚧<br>Sorry for any inconvenience 😬</p>
+    <div class="loader"></div>
+  </div>
+
+  <!-- About Me -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Embedded Software Engineer with 10+ years of experience across the automotive, retail, and telecommunications sectors.<br> 
+      Skilled in software requirements, architecture, development, integration, testing and validation of reliable embedded systems and applications using C, C++ and Python  
+      programming, Embedded Linux, and microcontroller-based development, with hands-on experience in hardware–software integration, communication protocols, and system 
+      optimization.<br> 
+      Strong analytical mindset and commitment to code quality, testing, and continuous improvement throughout the full software development life cycle.<br>
+      Passionate about technology and building reliable systems using state-of-the-art tools, hardware and software technologies.
+    </p>
   </section>
 
-  <footer style="text-align:center;margin-top:40px;">
-    <p>Contact: <a href="mailto:isael.garcia@example.com">isael.garcia@example.com</a></p>
-    <p><a href="https://github.com/isaelgarcialuis">GitHub</a> | <a href="https://linkedin.com/in/isaelgarcialuis">LinkedIn</a></p>
+  <footer>
+    <p>
+      Stay connected:
+      <a href="mailto:isael.garcia_90@hotmail.com">isael.garcia_90@hotmail.com</a> |
+      <a href="https://www.linkedin.com/in/isael-g-11882571/">LinkedIn</a>
+    </p>
   </footer>
+
+<script>
+  const commandResponses = {
+    "system boot": "🖥️ Booting embedded career... welcome aboard!",
+    "ping recruiter.linkedin.com": "📡 Pinging recruiters... response received ✅",
+    "find / -name job": "🔍 Searching for job opportunities... match found: /career/isael_garcia",
+    "grep -r 'opportunity' /career": "💡 Found opportunities in embedded systems!",
+    "sudo apt install -y motivation": "✨ Installing motivation... complete!",
+    "top": "🧠 Monitoring system resources... productivity at 99%, caffeine levels optimal ☕",
+    "ls -la": "total 42\n-rw-r--r-- isael_garcia_resume.pdf\n-rw-r--r-- portfolio_under_construction.txt",    
+    "curl -X POST https://api.linkedin.com/hire-me": "📨 Sent portfolio to recruiters. Awaiting response...",
+    "git commit -m 'Ready for new challenges'": "💬 Commit logged: open to exciting opportunities!",
+    "source oe-init-build-env": "🏗️ Yocto environment initialized. Ready to build.",
+    "bitbake meta-toolchain": "🔧 Generating cross-compilation toolchain... done!",
+    "bitbake core-image-minimal": "🧩 Building minimal embedded image... success!",    
+    "devtool build my-app": "⚙️ Building and packaging embedded application... success!",    
+    "git clone future": "🚀 Future successfully cloned. Preparing next build.",    
+    "make install": "✅ Installing new experiences... done.",
+    "python3 run.py": "🐍 Running innovation script... success.",
+    "gcc main.c -o main": "💻 Compiling C source... flawless build.",    
+    "exit": "👋 Exiting terminal... see you soon!"
+  };
+
+  const failMessages = [
+    "Nope — the raccoon stole that command 🦝",
+    "Close... but the CI just judged you 😅",
+    "Access denied. The server is on coffee break ☕",
+    "Whoops — looks like a syntax gremlin got you 🐛",
+    "Nice try — try not to break the kernel this time 😬",
+    "Command not found. Have you tried turning it off and on again?",
+    "Error 418: I'm a teapot — not accepting that command ☕️🤖",
+    "That one lives in another dimension. Try a different command.",
+    "That didn't compile in my brain. Try again.",
+    "Nope — the AI intern deleted that file. Retry?"
+  ];
+
+  const commands = Object.keys(commandResponses);
+  let currentIndex = 0;
+
+  const cmdEl = document.getElementById("command");
+  const inputEl = document.getElementById("input");
+  const resultEl = document.getElementById("result");
+
+  // preload simple sound effects
+  const successSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+  const failSound = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+
+  function newCommand() {
+    if (currentIndex >= commands.length) {
+      cmdEl.textContent = "> All commands executed 🎉";
+      inputEl.disabled = true;
+      inputEl.placeholder = "Session complete";
+      resultEl.textContent = "✨ You’ve reached the end of the terminal journey!";
+      return;
+    }
+    const nextCmd = commands[currentIndex];
+    cmdEl.textContent = "> " + nextCmd;
+    inputEl.value = "";
+    resultEl.textContent = "";
+  }
+
+  function showFunnyFail() {
+    const idx = Math.floor(Math.random() * failMessages.length);
+    resultEl.textContent = failMessages[idx];
+    resultEl.className = "fail";
+    inputEl.classList.add("shake");
+    failSound.currentTime = 0;
+    failSound.play();
+    setTimeout(() => inputEl.classList.remove("shake"), 400);
+  }
+
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const val = inputEl.value.trim();
+      const expected = commands[currentIndex];
+
+      if (val === expected) {
+        resultEl.textContent = commandResponses[val];
+        resultEl.className = "success";
+        successSound.currentTime = 0;
+        successSound.play();
+        currentIndex++;
+        setTimeout(newCommand, 3000);
+      } else {
+        showFunnyFail();
+      }
+    }
+  });
+
+  newCommand();
+</script>
+
+
 </body>
 </html>
