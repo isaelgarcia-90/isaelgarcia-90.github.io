@@ -161,9 +161,57 @@
   footer a:hover {
     text-decoration: underline;
   }
+
+/* Hover Video - Small With Audio */
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem auto 1.8rem auto;
+}
+
+.small-video {
+  width: 180px;     /* ~1/4 size */
+  max-width: 60vw;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(0, 255, 159, 0.25);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: #020804;
+}
+
+.small-video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 32px rgba(0, 255, 159, 0.45);
+}
+
+.small-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 </style>
 </head>
 <body>
+
+  <!-- Profile -->
+  <div class="profile">
+    <h1>Isael García Luis</h1>
+    <p>Hi there!. Welcome to my portfolio website!<br>
+       Currently under construction 🚧<br></p>
+    <div class="loader"></div>
+  </div>
+
+  <!--Intro Video to Play-on-hover enter with audio -->
+  <p style="font-size:0.8rem;color:#55ff99aa;text-align:center;">
+    Click anywhere once to enable sound 🔊
+  </p>
+  <div class="video-wrapper small-video">
+    <video id="hoverVideo" preload="metadata">
+      <source src="assets/video/avatar.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- Typing Game -->
   <div id="game">
@@ -177,15 +225,6 @@
     <div id="hint">Hint: Try typing the command shown above 👆</div>
     <div id="result"></div>
   </div>
-
-  <!-- Profile -->
-  <div class="profile">
-    <h1>Isael García</h1>
-    <p>Hi there!. Welcome to my portfolio website!<br>
-       Currently under construction 🚧<br></p>
-    <div class="loader"></div>
-  </div>
-
   <!-- About Me -->
   <section id="about">
     <h2>About Me</h2>
@@ -300,8 +339,42 @@
   });
 
   newCommand();
+
+// Play video with sound ONLY on hover (no stop on exit)
+const hoverVideo = document.getElementById("hoverVideo");
+
+let mediaUnlocked = false;
+
+// Unlock audio/video on first user interaction anywhere
+function unlockMedia() {
+  if (!mediaUnlocked) {
+    hoverVideo.play().then(() => {
+      hoverVideo.pause();
+      hoverVideo.currentTime = 0;
+      mediaUnlocked = true;
+      console.log("Media unlocked ✅");
+    }).catch(() => {});
+  }
+
+  document.removeEventListener("click", unlockMedia);
+  document.removeEventListener("keydown", unlockMedia);
+  document.removeEventListener("touchstart", unlockMedia);
+}
+
+// Listen for ONE real user gesture
+document.addEventListener("click", unlockMedia);
+document.addEventListener("keydown", unlockMedia);
+document.addEventListener("touchstart", unlockMedia);
+
+// Now hover will ALWAYS play with audio
+hoverVideo.addEventListener("mouseenter", () => {
+  if (mediaUnlocked && hoverVideo.paused) {
+    hoverVideo.play().catch(err => {
+      console.warn("Play blocked:", err);
+    });
+  }
+});
+
 </script>
-
-
 </body>
 </html>
