@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isael García Luis | Portfolio</title>
+  <title>Isael García | Portfolio</title>
 
 <!-- ✅ Google Analytics tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRHTVVLTLN"></script>
@@ -19,7 +19,7 @@
   :root {
     --bg: #0d1117;
     --text: #00ff9f;
-    --accent: #00ff9f;
+    --accent: #00ffff;
     --error: #ff4d4d;
   }
 
@@ -149,7 +149,7 @@
   footer {
     margin-top: 2rem;
     font-size: 0.9rem;
-    color: #55ff99;
+    color: #bef800;
     text-align: center;
   }
 
@@ -167,10 +167,11 @@
   display: flex;
   justify-content: center;
   margin: 1.2rem auto 1.8rem auto;
+  animation: fadeIn 1.2s ease-in-out;
 }
 
 .small-video {
-  width: 180px;     /* ~1/4 size */
+  width: 130px;     /* ~1/4 size */
   max-width: 60vw;
   border: 1px solid var(--accent);
   border-radius: 12px;
@@ -191,13 +192,24 @@
   height: auto;
   display: block;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>
 </head>
 <body>
 
   <!-- Profile -->
   <div class="profile">
-    <h1>Isael García Luis</h1>
+    <h1>Isael García</h1>
     <p>Hi there!. Welcome to my portfolio website!<br>
        Currently under construction 🚧<br></p>
     <div class="loader"></div>
@@ -208,7 +220,7 @@
     Click anywhere once to enable sound 🔊
   </p>
   <div class="video-wrapper small-video">
-    <video id="hoverVideo" preload="metadata">
+    <video id="hoverVideo" preload="metadata" playsinline>
       <source src="assets/video/avatar.mp4" type="video/mp4">
     </video>
   </div>
@@ -340,39 +352,31 @@
 
   newCommand();
 
-// Play video with sound ONLY on hover (no stop on exit)
 const hoverVideo = document.getElementById("hoverVideo");
 
-let mediaUnlocked = false;
+let audioUnlocked = false;
 
-// Unlock audio/video on first user interaction anywhere
-function unlockMedia() {
-  if (!mediaUnlocked) {
+// ✅ Unlock audio on first user interaction (mandatory for mobile)
+document.addEventListener("click", () => {
+  if (!audioUnlocked) {
+    hoverVideo.muted = false;   // enable sound
     hoverVideo.play().then(() => {
       hoverVideo.pause();
       hoverVideo.currentTime = 0;
-      mediaUnlocked = true;
-      console.log("Media unlocked ✅");
+      audioUnlocked = true;
+      console.log("Audio unlocked ✅");
     }).catch(() => {});
   }
+}, { once: true });
 
-  document.removeEventListener("click", unlockMedia);
-  document.removeEventListener("keydown", unlockMedia);
-  document.removeEventListener("touchstart", unlockMedia);
-}
-
-// Listen for ONE real user gesture
-document.addEventListener("click", unlockMedia);
-document.addEventListener("keydown", unlockMedia);
-document.addEventListener("touchstart", unlockMedia);
-
-// Now hover will ALWAYS play with audio
+// ✅ Desktop hover
 hoverVideo.addEventListener("mouseenter", () => {
-  if (mediaUnlocked && hoverVideo.paused) {
-    hoverVideo.play().catch(err => {
-      console.warn("Play blocked:", err);
-    });
-  }
+  hoverVideo.play().catch(err => console.warn("Play blocked:", err));
+});
+
+// ✅ Mobile / Tablet touch
+hoverVideo.addEventListener("touchstart", () => {
+  hoverVideo.play().catch(err => console.warn("Play blocked:", err));
 });
 
 </script>
