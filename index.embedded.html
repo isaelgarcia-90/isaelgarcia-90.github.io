@@ -192,20 +192,17 @@
   }
 
 
-  /* Responsive Video Wrapper */
+/* Hover Video - Small With Audio */
 .video-wrapper {
   display: flex;
   justify-content: center;
   margin: 1.2rem auto 1.8rem auto;
   animation: fadeIn 1.2s ease-in-out;
-  width: 100%;
 }
 
-/* Responsive adaptive video box */
-.responsive-video {
-
-  width: min(400px, 80vw);   /* Desktop: 400px, Mobile: scales down */
-  aspect-ratio: 16 / 9;      /* Landscape */
+.small-video {
+  width: 130px;     /* ~1/4 size */
+  max-width: 60vw;
   border: 1px solid var(--accent);
   border-radius: 12px;
   overflow: hidden;
@@ -215,15 +212,15 @@
   background: #020804;
 }
 
-.responsive-video:hover {
-  transform: scale(1.03);
+.small-video:hover {
+  transform: scale(1.05);
   box-shadow: 0 0 32px rgba(0, 255, 159, 0.45);
 }
 
-.responsive-video video {
+.small-video video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 @keyframes fadeIn {
@@ -236,8 +233,6 @@
     transform: translateY(0);
   }
 }
-
-
 </style>
 </head>
 <body>
@@ -254,13 +249,11 @@
   <p style="font-size:0.8rem;color:#00ffff;text-align:center;">
     Click anywhere once to enable sound 🔊 and hover video.
   </p>
-  <div class="video-wrapper">
-    <div class="responsive-video">
-      <video id="hoverVideo" preload="metadata" playsinline>
-        <source src="assets/video/avatar.mp4" type="video/mp4">
-      </video>
-    </div> <!-- responsive-video -->
-  </div> <!-- video-wrapper -->
+  <div class="video-wrapper small-video">
+    <video id="hoverVideo" preload="metadata" playsinline>
+      <source src="assets/video/avatar.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- Typing Game -->
   <div id="game">
@@ -312,14 +305,23 @@
 
 <script>
   const commandResponses = {
-    "system boot": "🖥️ Booting AI/Web career... welcome aboard!",
+    "system boot": "🖥️ Booting embedded career... welcome aboard!",
     "ping recruiter.linkedin.com": "📡 Pinging recruiters... response received ✅",
-    "find / -name job": "🔍 Searching for job opportunities... match found: AI/Web/career/isael_garcia",
-    "grep -r 'opportunity' AI/Web/career": "💡 Found opportunities in AI/Web Engineering!",
+    "find / -name job": "🔍 Searching for job opportunities... match found: /career/isael_garcia",
+    "grep -r 'opportunity' /career": "💡 Found opportunities in embedded systems!",
     "sudo apt install -y motivation": "✨ Installing motivation... complete!",
     "top": "🧠 Monitoring system resources... productivity at 99%, caffeine levels optimal ☕",
+    "ls -la": "total 42\n-rw-r--r-- isael_garcia_resume.pdf\n-rw-r--r-- portfolio_under_construction.txt",    
+    "curl -X POST https://api.linkedin.com/hire-me": "📨 Sent portfolio to recruiters. Awaiting response...",
+    "git commit -m 'Ready for new challenges'": "💬 Commit logged: open to exciting opportunities!",
+    "source oe-init-build-env": "🏗️ Yocto environment initialized. Ready to build.",
+    "bitbake meta-toolchain": "🔧 Generating cross-compilation toolchain... done!",
+    "bitbake core-image-minimal": "🧩 Building minimal embedded image... success!",    
+    "devtool build my-app": "⚙️ Building and packaging embedded application... success!",    
+    "git clone future": "🚀 Future successfully cloned. Preparing next build.",    
     "make install": "✅ Installing new experiences... done.",
     "python3 run.py": "🐍 Running innovation script... success.",
+    "gcc main.c -o main": "💻 Compiling C source... flawless build.",    
     "exit": "👋 Exiting terminal... see you soon!"
   };
 
@@ -391,51 +393,32 @@
 
   newCommand();
 
-
-
 const hoverVideo = document.getElementById("hoverVideo");
 
 let audioUnlocked = false;
 
-// 🔥 Track: First click/tap enabling sound
+// ✅ Unlock audio on first user interaction (mandatory for mobile)
 document.addEventListener("click", () => {
   if (!audioUnlocked) {
-    hoverVideo.muted = false;
+    hoverVideo.muted = false;   // enable sound
     hoverVideo.play().then(() => {
       hoverVideo.pause();
       hoverVideo.currentTime = 0;
       audioUnlocked = true;
       console.log("Audio unlocked ✅");
-
-      gtag('event', 'audio_unlocked', {
-        event_category: 'video',
-        event_label: 'avatar_video'
-      });
-
     }).catch(() => {});
   }
 }, { once: true });
 
-// 🔥 Desktop hover play
+// ✅ Desktop hover
 hoverVideo.addEventListener("mouseenter", () => {
   hoverVideo.play().catch(err => console.warn("Play blocked:", err));
-
-  gtag('event', 'video_hover_play', {
-    event_category: 'video',
-    event_label: 'avatar_video'
-  });
 });
 
-// 🔥 Mobile/tablet touch play
+// ✅ Mobile / Tablet touch
 hoverVideo.addEventListener("touchstart", () => {
   hoverVideo.play().catch(err => console.warn("Play blocked:", err));
-
-  gtag('event', 'video_touch_play', {
-    event_category: 'video',
-    event_label: 'avatar_video'
-  });
 });
-
 
 </script>
 </body>
