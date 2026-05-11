@@ -2,438 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isael García | Portfolio</title>
-
-<!-- ✅ Google Analytics tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SRHTVVLTLN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  gtag('config', 'G-SRHTVVLTLN'); // 👈 Replace with your own tracking measurement ID
-</script>
-  
-<style>
-  :root {
-    --bg: #0d1117;
-    --text: #00ffff;
-    --accent: #00ffff;
-    --error: #ff4d4d;
-  }
-
-  body {
-    font-family: "Courier New", monospace;
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-
-  /* Profile Section */
-  .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin: 0.3rem 0;
-    color: var(--accent);
-    text-shadow: 0 0 8px var(--accent);
-  }
-
-  p {
-    font-size: 1rem;
-    color: #00ffff;
-    text-align: center;
-    max-width: 700px;
-    line-height: 1.5;
-  }
-
-  /* Typing Game */
-  #game {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  #command {
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-
-  #input {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--text);
-    padding: 6px 8px;
-    outline: none;
-    width: 260px;
-    text-align: center;
-  }
-
-  #input::placeholder {
-    color: #146c6c;
-    font-size: 0.9rem;
-  }
-
-  /* Shake animation */
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-5px); }
-    40%, 80% { transform: translateX(5px); }
-  }
-
-  .shake {
-    animation: shake 0.4s;
-  }
-
-  #hint {
-    font-size: 0.85rem;
-    color: #00ffff;
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  #result {
-    height: 1.2em;
-    margin-top: 6px;
-  }
-
-  .success { color: var(--accent); }
-  .fail { color: var(--error); }
-
-  /* Loader */
-  .loader {
-    margin-top: 1.8rem;
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(0,255,159,0.2);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* About Section */
-  #about {
-    max-width: 750px;
-    margin-top: 2rem;
-    border-top: 1px solid var(--accent);
-    padding-top: 1.5rem;
-    text-align: left;
-  }
-
-  #about h2 {
-    color: var(--accent);
-    text-shadow: 0 0 6px var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  #about p {
-    text-align: justify;
-    color: #00ffff;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  /* About Section */
-
-  /* Projects Section */
-  #projects {
-    max-width: 750px;
-    margin-top: 2rem;
-    border-top: 1px solid var(--accent);
-    padding-top: 1.5rem;
-    text-align: left;
-  }
-
-  #projects h2 {
-    color: var(--accent);
-    text-shadow: 0 0 6px var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  #projects p {
-    text-align: justify;
-    color: #00ffff;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  a[href="https://forzeswater.vercel.app/"] {
-  color: white !important;
-}
-  /* Projects Section */
-
-
-  footer {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #fcfefe;
-    text-align: center;
-  }
-
-  footer a {
-    color: white !important;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-
-  /* Responsive Video Wrapper */
-.video-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 1.2rem auto 1.8rem auto;
-  animation: fadeIn 1.2s ease-in-out;
-  width: 100%;
-}
-
-/* Responsive adaptive video box */
-.responsive-video {
-
-  width: min(400px, 80vw);   /* Desktop: 400px, Mobile: scales down */
-  aspect-ratio: 16 / 9;      /* Landscape */
-  border: 1px solid var(--accent);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 18px rgba(0, 255, 159, 0.25);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  background: #020804;
-}
-
-.responsive-video:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 32px rgba(0, 255, 159, 0.45);
-}
-
-.responsive-video video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--essential for responsive web design-->
+  <title>Isael Garcia</title>
+  <!-- ✅ Google Analytics tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRHTVVLTLN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    gtag('config', 'G-SRHTVVLTLN'); // 👈 Replace with your own tracking measurement ID
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome -->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
 </head>
 <body>
+    <header class="site-header" role="banner">
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
+      <div class="wrapper">
 
-  <!-- Profile -->
-  <div class="profile">
-    <h1>Isael García</h1>
-    <p>Hi there!<br> Welcome to my portfolio website!<br><br>
-       Currently under construction... 🚧<br></p>
-    <div class="loader"></div>
-  </div>
+        <a class="site-title" href="./">Isael Garcia</a>
 
-  <!--Intro Video to Play-on-hover enter with audio -->
-  <p style="font-size:0.8rem;color:#00ffff;text-align:center;">
-    Click anywhere once to enable sound 🔊 and hover video.
-  </p>
-  <div class="video-wrapper">
-    <div class="responsive-video">
-      <video id="hoverVideo" preload="metadata" playsinline>
-        <source src="assets/video/avatar.mp4" type="video/mp4">
-      </video>
-    </div> <!-- responsive-video -->
-  </div> <!-- video-wrapper -->
+          <nav class="site-nav">
 
-  <!-- Typing Game -->
-  <div id="game">
-    <div id="command">Initializing...</div>
-    <input
-      id="input"
-      type="text"
-      placeholder="type here"
-      autofocus
-    />
-    <div id="hint">Hint: Try typing the command shown above 👆</div>
-    <div id="result"></div>
-  </div>
-  <!-- About Me -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I'm a multi-tech software engineer with experience across automotive,
-      retail, and telecommunications sectors.<br><br>
-      I have a strong foundation in embedded systems, C/C++, Python, Linux, and
-      microcontroller-based development with proven background in the full lifecycle
-      software engineering, system integration, and performance optimization.<br><br>
-      Currently upgrading my skillset towards AI engineering, data-driven systems,
-      modern web technologies, and digital marketing.<br><br>
-      Strong analytical mindset, continuous learner, and focused on building software
-      solutions using state-of-the-art technologies.
-    </p>
-  </section>
+            <!--<input type="checkbox" id="nav-trigger" class="nav-trigger">-->
+            <input type="checkbox" id="nav-trigger">
 
-  <!-- My Projects -->
-  <section id="projects">
-    <h2>My Projects</h2>
-    <p>
-      Water treatment website is under construction...<br><br>
-      <a href="https://forzeswater.vercel.app/">forzeswater.vercel.app</a>
-      <br><br>AI-based project for rapid prototyping using Lovable, Vite, React Js, Next Js, Typescript, JavaScript, Python, HTML, Tailwind CSS, Vercel, Git,
-      Prompt Engineering and Digital Marketing skills.<br><br>
-      Chatbot will come soon. Stay tuned for updates!<br><br>
-    </p>
-  </section>
+            <!--
+            <label for="nav-trigger">
+              <span class="menu-icon">
+                <svg viewBox="0 0 18 15" width="18px" height="15px">
+                  <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"></path>
+                  <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"></path>
+                  <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></path>
+                </svg>
+              </span>
+            </label>
+          -->
+            <label for="nav-trigger" class="menu-btn">
+              ☰
+            </label>
 
-  <footer>
-    <p>
-      <a href="mailto:isael.garcia_90@hotmail.com">isael.garcia_90@hotmail.com</a> |
-      <a href="https://www.linkedin.com/in/isael-g-11882571/">LinkedIn</a>
-    </p>
-  </footer>
+            <!--<div class="trigger">-->
+            <div class="nav-links">            
+                  <a class="page-link" href="./now/">Now</a>                
+                  <a class="page-link" href="./blog/">Blog</a>                
+                  <a class="page-link" href="./list-100/">List 100</a>
+                  <a class="page-link" href="./achievements/">Achievements</a>
+                  <a class="page-link" href="./contact/">Contact me</a>
+            </div>
 
-<script>
-  const commandResponses = {
-    "system boot": "🖥️ Booting Linux career... welcome aboard!",
-    "ping recruiter.com": "📡 Pinging recruiters... response received ✅",
-    "find / -name job": "🔍 Searching jobs... Linux Engineering opportunities found!",
-    "sudo apt install -y motivation": "✨ Installing motivation... complete!",
-    "top": "🧠 Monitoring caffeine levels ☕ ... productivity at 99% ",
-    "make install": "✅ Installing new experiences... done.",
-    "exit": "👋 Exiting terminal... see you soon!"
-  };
+          </nav>
+      </div>
+    </header>
 
-  const failMessages = [
-    "Nope — the raccoon stole that command 🦝",
-    "Close... but the CI just judged you 😅",
-    "Access denied. The server is on coffee break ☕",
-    "Whoops — looks like a syntax gremlin got you 🐛",
-    "Nice try — try not to break the kernel this time 😬",
-    "Command not found. Have you tried turning it off and on again?",
-    "Error 418: I'm a teapot — not accepting that command ☕️🤖",
-    "That one lives in another dimension. Try a different command.",
-    "That didn't compile in my brain. Try again.",
-    "Nope — the AI intern deleted that file. Retry?"
-  ];
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
 
-  const commands = Object.keys(commandResponses);
-  let currentIndex = 0;
+          <header class="post-header">
+            <h1 class="post-title"></h1>
+          </header>
 
-  const cmdEl = document.getElementById("command");
-  const inputEl = document.getElementById("input");
-  const resultEl = document.getElementById("result");
+          <div class="post-content">
+            <p>
+              <a href="https://www.linkedin.com/in/isael-g-11882571/" target="_blank">
+                <img alt="Isael Garcia" src="./assets/image/profile.jpg" style="float: right; max-width: 33%; margin: 0 0 1em 2em; border-radius: 999px">
+              </a>
+            </p>
 
-  // preload simple sound effects
-  const successSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
-  const failSound = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+            <h3>Welcome to my portfolio website! (Currently under construction)</h3>
+            <p>This is a space where I share my projects, thoughts, and journey as a software engineer.</p>
+            
+            <p>I'm passionate about building innovative solutions and continuously learning state-of-the-art technologies.
+              Feel free to explore and <a href="https://www.linkedin.com/in/isael-g-11882571/">connect with me!</a>
+            </p>
 
-  function newCommand() {
-    if (currentIndex >= commands.length) {
-      cmdEl.textContent = "> All commands executed 🎉";
-      inputEl.disabled = true;
-      inputEl.placeholder = "Session complete";
-      resultEl.textContent = "✨ You’ve reached the end of the terminal journey!";
-      return;
-    }
-    const nextCmd = commands[currentIndex];
-    cmdEl.textContent = "> " + nextCmd;
-    inputEl.value = "";
-    resultEl.textContent = "";
-  }
+            <p>I’m Isael Garcia, a software engineer and computer scientist pursuing a career change in Machine Learning and
+               AI Engineering from scratch coming from an Embedded Systems background.</p>
 
-  function showFunnyFail() {
-    const idx = Math.floor(Math.random() * failMessages.length);
-    resultEl.textContent = failMessages[idx];
-    resultEl.className = "fail";
-    inputEl.classList.add("shake");
-    failSound.currentTime = 0;
-    failSound.play();
-    setTimeout(() => inputEl.classList.remove("shake"), 400);
-  }
+            <p>I got my bachelor´s degree in Electronics and Telecommunications Engineering from the National Polytechnic Institute in Mexico City.</p>
 
-  inputEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const val = inputEl.value.trim();
-      const expected = commands[currentIndex];
+            <p>I also got my master´s degree in Computer Science from the Autonomous University of Guadalajara in Guadalajara, Jalisco, Mexico.</p>
 
-      if (val === expected) {
-        resultEl.textContent = commandResponses[val];
-        resultEl.className = "success";
-        successSound.currentTime = 0;
-        successSound.play();
-        currentIndex++;
-        setTimeout(newCommand, 3000);
-      } else {
-        showFunnyFail();
-      }
-    }
-  });
+            <p>I spend a lot of time reading (instead of working). I like books that make me think and are also fun to read.</p>
 
-  newCommand();
+            <p>I enjoy learning about fun technical challenges and collaborating with great teams. <a class="page-link" href="./contact/">Reach out</a> if you want to find a way to work together!</p>
+
+
+            
+            <!--Intro Video to Play-on-hover enter with audio -->
+            <p style="font-size:0.8rem;color:#00ffff;text-align:center;">
+              Click anywhere once to enable sound 🔊 and hover video.
+            </p>
+            <div class="video-wrapper">
+              <div class="responsive-video">
+                <video id="hoverVideo" preload="metadata" playsinline>
+                  <source src="assets/video/avatar.mp4" type="video/mp4">
+                </video>
+              </div> <!-- responsive-video -->
+            </div> <!-- video-wrapper -->
+
+            <!-- Typing Game -->
+            <div id="game">
+              <div id="command">Initializing...</div>
+              <input
+                id="input"
+                type="text"
+                placeholder="type here"
+                autofocus
+              />
+              <div id="hint">Hint: Try typing the command shown above 👆</div>
+              <div id="result"></div>
+            </div>
+
+          </div>
+
+          
+        </article>
 
 
 
-const hoverVideo = document.getElementById("hoverVideo");
+      </div>
+    </main>
 
-let audioUnlocked = false;
+    <footer class="site-footer">
 
-// 🔥 Track: First click/tap enabling sound
-document.addEventListener("click", () => {
-  if (!audioUnlocked) {
-    hoverVideo.muted = false;
-    hoverVideo.play().then(() => {
-      hoverVideo.pause();
-      hoverVideo.currentTime = 0;
-      audioUnlocked = true;
-      console.log("Audio unlocked ✅");
+      <div class="wrapper">
+        <div class="footer-col-wrapper">
+          <div class="footer-col footer-col-1">
+            <ul class="contact-list">              
+              
+              <li>
+                <a href="https://www.linkedin.com/in/isael-g-11882571/"><span class="icon icon--linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></span><span class="username">isaelgarcia</span></a>
+              </li>
+              
+              <li>
+                <a href="https://github.com/isaelgarcia-90/"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path></svg>
+                </span><span class="username">isaelgarcia-90</span></a>
+              </li>
+              
+            </ul>
+          </div>
 
-      gtag('event', 'audio_unlocked', {
-        event_category: 'video',
-        event_label: 'avatar_video'
-      });
+        </div>
 
-    }).catch(() => {});
-  }
-}, { once: true });
+      </div>
 
-// 🔥 Desktop hover play
-hoverVideo.addEventListener("mouseenter", () => {
-  hoverVideo.play().catch(err => console.warn("Play blocked:", err));
+    </footer>
 
-  gtag('event', 'video_hover_play', {
-    event_category: 'video',
-    event_label: 'avatar_video'
-  });
-});
-
-// 🔥 Mobile/tablet touch play
-hoverVideo.addEventListener("touchstart", () => {
-  hoverVideo.play().catch(err => console.warn("Play blocked:", err));
-
-  gtag('event', 'video_touch_play', {
-    event_category: 'video',
-    event_label: 'avatar_video'
-  });
-});
-
-
-</script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
