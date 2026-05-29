@@ -23,7 +23,7 @@ main{
 }
 
 .site-title {
-  color: #00ffff;
+  color: #ffffff;
   text-decoration: none;
   font-size: 2rem;
   margin-left: auto;
@@ -46,7 +46,7 @@ main{
 }
 
 .nav-links a {
-  color: #00ffff;
+  color: #ffffff;
   text-decoration: none;/* Removes the underline */
 }
 
@@ -227,7 +227,8 @@ This is what enables:
 
   #command {
     font-size: 1.1rem;
-    color: var(--accent);
+    /*color: var(--accent);*/
+    color:#c39c54;
     margin-bottom: 10px;
   }
 
@@ -259,7 +260,7 @@ This is what enables:
 
   #hint {
     font-size: 0.85rem;
-    color: #00ffff;
+    color: #c39c54;
     margin-top: 6px;
     font-style: italic;
   }
